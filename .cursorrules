@@ -1,0 +1,7 @@
+# Laura de la Riva Studio - Agent Rules
+
+- Stack: Next.js (App Router), TypeScript, Tailwind CSS, Sanity CMS, PayPal SDK.
+- Architecture: Server Components by default. Client components only for interactive elements (PayPal, Form, CMS preview).
+- Design System: Cream background (#FDFBF7), deep charcoal text (#2A2A2A), Bodoni/Didot serif titles, and elegant script headers derived from card branding.
+- Layout Rule: Follow mahakaliyoga.com style (Image left, content right in 2-column responsive flex/grid).
+- CMS Rule: All text, images, shop products, and external Udemy course links MUST be fetched dynamically from Sanity CMS via GROQ queries.
