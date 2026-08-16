@@ -31,7 +31,9 @@ header, footer {
   background: transparent !important;
 }
 
-/* Strip all white background panels inside mobile menu overlays and navigation blocks */
+/* Force strip all white backgrounds inside mobile menu overlays and navigation blocks */
+header *,
+nav *,
 div[class*="bg-white"],
 ul[class*="bg-white"],
 li[class*="bg-white"],

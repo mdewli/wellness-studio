@@ -51,15 +51,15 @@ export function SplitScreen({ title, image, content }: SplitScreenProps) {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-10">
       <div className="flex flex-col md:flex-row gap-6 lg:gap-12 items-start">
-        {/* Left Column: Image */}
         {imageUrl && (
           <div className="w-full md:w-1/2 flex-shrink-0">
-            <div className="relative w-full h-[280px] sm:h-[360px] md:h-[520px] rounded-lg overflow-hidden shadow-sm">
+            <div className="relative w-full h-[60vh] min-h-[280px] max-h-[480px] md:h-[550px] md:max-h-none rounded-lg overflow-hidden shadow-sm">
               <Image
                 src={imageUrl}
                 alt={title || "Page Image"}
                 fill
                 priority
+                unoptimized
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
@@ -67,7 +67,6 @@ export function SplitScreen({ title, image, content }: SplitScreenProps) {
           </div>
         )}
 
-        {/* Right Column: Title & Text */}
         <div className="w-full md:w-1/2 flex flex-col justify-start">
           <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-charcoal leading-tight">
             {title}
