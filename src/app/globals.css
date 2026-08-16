@@ -18,7 +18,12 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: url('/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-bodoni), "Times New Roman", serif;
 }

@@ -29,13 +29,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Filter out invalid items so ONLY user-uploaded Sanity images display
   const userImages = service.images?.filter((img: any) => img?.asset?._ref) || [];
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-12">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-        {/* Left Column: Stacked User Images (Original size, uncropped) */}
+        {/* Left Column: Stacked Images */}
         {userImages.length > 0 && (
           <div className="md:col-span-5 flex flex-col gap-6 sticky top-8">
             {userImages.map((img: any, idx: number) => (
@@ -50,9 +49,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         )}
 
-        {/* Right Column: Justified Text Content */}
+        {/* Right Column: Title & Justified Content */}
         <div className={`prose max-w-none text-justify ${userImages.length > 0 ? 'md:col-span-7' : 'md:col-span-12'}`}>
-          <h1 className="text-3xl font-light mb-6 text-left">{service.title}</h1>
+          <h1 className="font-script text-4xl md:text-5xl text-left text-[#2A2A2A] mb-6">{service.title}</h1>
           <CustomPortableText value={service.description} />
         </div>
       </div>
