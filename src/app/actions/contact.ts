@@ -10,7 +10,10 @@ export type ContactFormState = {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendContactEmail(formData: FormData): Promise<ContactFormState> {
+export async function sendContactEmail(
+  prevState: ContactFormState,
+  formData: FormData
+): Promise<ContactFormState> {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const message = formData.get('message') as string;
@@ -40,5 +43,4 @@ export async function sendContactEmail(formData: FormData): Promise<ContactFormS
   }
 }
 
-// Alias export to satisfy ContactForm.tsx imports
 export const submitContactForm = sendContactEmail;
