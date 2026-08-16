@@ -59,7 +59,7 @@ export function SplitScreen({
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="font-script text-4xl leading-tight text-[#2A2A2A] md:text-5xl text-left">
+        <h1 className="font-serif text-4xl leading-tight text-[#2A2A2A] md:text-5xl text-left">
           {title}
         </h1>
         <div className="space-y-4 font-serif text-base leading-relaxed md:text-lg text-justify">

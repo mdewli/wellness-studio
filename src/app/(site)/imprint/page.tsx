@@ -17,7 +17,7 @@ export default async function ImprintPage() {
     try {
       imprintData = await client.fetch(imprintQuery);
     } catch {
-      // Fall through if Sanity unavailable
+      // Fallback if Sanity is unreachable
     }
   }
 
@@ -71,7 +71,7 @@ export default async function ImprintPage() {
           </p>
         )}
 
-        {legalText && legalText.length > 0 && (
+        {legalText && (
           <div className="pt-6 border-t border-black/10 text-justify">
             <CustomPortableText value={legalText} />
           </div>
