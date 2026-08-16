@@ -1,46 +1,35 @@
-"use server";
+'use server';
 
-export type ContactFormState = {
-  ok: boolean;
-  message: string;
-};
+import { Resend } from 'resend';
 
-function asString(value: FormDataEntryValue | null) {
-  return typeof value === "string" ? value.trim() : "";
-}
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function submitContactForm(
-  _prev: ContactFormState,
-  formData: FormData,
-): Promise<ContactFormState> {
-  const websiteUrl = asString(formData.get("website_url"));
-  if (websiteUrl) {
-    return { ok: true, message: "Thank you. Your message has been sent." };
+export async function sendContactEmail(formData: FormData) {
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  const message = formData.get('message') as string;
+
+  console.log('--- EXECUTING RESEND ACTION ---');
+  console.log('API Key present:', !!process.env.RESEND_API_KEY);
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'Laura de la Riva <onboarding@resend.dev>',
+      to: [process.env.CONTACT_EMAIL || 'mayankdewli@gmail.com'],
+      replyTo: email,
+      subject: `New Message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    });
+
+    if (error) {
+      console.error('RESEND ERROR:', error);
+      return { success: false, error: error.message };
+    }
+
+    console.log('RESEND SUCCESS:', data);
+    return { success: true };
+  } catch (err) {
+    console.error('SERVER ACTION CATCH ERROR:', err);
+    return { success: false, error: 'Internal Server Error' };
   }
-
-  const name = asString(formData.get("name"));
-  const email = asString(formData.get("email"));
-  const message = asString(formData.get("message"));
-  const mathAnswer = asString(formData.get("math_answer"));
-  const expected = asString(formData.get("math_expected"));
-
-  if (!name || !email || !message) {
-    return { ok: false, message: "Please complete all required fields." };
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { ok: false, message: "Please enter a valid email address." };
-  }
-
-  if (!mathAnswer || Number(mathAnswer) !== Number(expected)) {
-    return { ok: false, message: "The math challenge answer is incorrect." };
-  }
-
-  // Wire to an email provider (Resend, Nodemailer, etc.) when credentials are available.
-  console.info("[contact]", { name, email, message });
-
-  return {
-    ok: true,
-    message: "Thank you. Your message has been sent to Laura.",
-  };
 }
