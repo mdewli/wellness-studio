@@ -60,8 +60,7 @@ export const service = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "array",
-      of: [defineArrayMember({ type: "block" })],
+      type: "blockContent",
       validation: (rule) => rule.required(),
     }),
   ],

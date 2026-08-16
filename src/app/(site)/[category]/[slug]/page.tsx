@@ -1,161 +1,63 @@
-import { notFound } from "next/navigation";
-import { PortableText } from "next-sanity";
-import type { ComponentProps } from "react";
-import { SplitScreen } from "@/components/SplitScreen";
-import {
-  getServiceFallback,
-  serviceCategories,
-  serviceFallbacks,
-  type ServiceCategory,
-} from "@/lib/navigation";
-import { SITE_LOGO } from "@/lib/site";
-import { assertSanityConfigured } from "@/sanity/env";
-import { client } from "@/sanity/lib/client";
-import { safeImageAlt, safeImageUrl } from "@/sanity/lib/image";
-import {
-  allServiceParamsQuery,
-  serviceByCategoryAndSlugQuery,
-} from "@/sanity/lib/queries";
+import { client } from '@/sanity/lib/client';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import CustomPortableText from '@/components/CustomPortableText';
+import { notFound } from 'next/navigation';
 
-type PageProps = {
-  params: Promise<{ category: string; slug: string }>;
-};
+export const revalidate = 0;
 
-export async function generateStaticParams() {
-  const fallbackParams = serviceFallbacks.map((service) => ({
-    category: service.category,
-    slug: service.slug,
-  }));
-
-  if (!assertSanityConfigured()) return fallbackParams;
-
-  try {
-    const services = await client.fetch(allServiceParamsQuery);
-    const cmsParams =
-      services
-        ?.filter(
-          (service: { category?: string; slug?: string }) =>
-            service.category &&
-            service.slug &&
-            serviceCategories.includes(service.category as ServiceCategory),
-        )
-        .map((service: { category: string; slug: string }) => ({
-          category: service.category,
-          slug: service.slug,
-        })) ?? [];
-
-    const seen = new Set(
-      fallbackParams.map((param) => `${param.category}/${param.slug}`),
-    );
-    for (const param of cmsParams) {
-      const key = `${param.category}/${param.slug}`;
-      if (!seen.has(key)) {
-        fallbackParams.push(param);
-        seen.add(key);
-      }
-    }
-  } catch {
-    // Keep fallback params only.
-  }
-
-  return fallbackParams;
+interface PageProps {
+  params: Promise<{
+    category: string;
+    slug: string;
+  }>;
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { category, slug } = await params;
-  const fallback = getServiceFallback(category, slug);
-
-  if (assertSanityConfigured()) {
-    try {
-      const service = await client.fetch(serviceByCategoryAndSlugQuery, {
-        category,
-        slug,
-      });
-      if (service?.title) return { title: service.title };
-    } catch {
-      // Fall through.
-    }
-  }
-
-  return { title: fallback?.title ?? "Service" };
+async function getService(category: string, slug: string) {
+  const query = `*[_type == "service" && category == $category && slug.current == $slug][0]{
+    title,
+    description,
+    images
+  }`;
+  return await client.fetch(query, { category, slug });
 }
 
-export default async function ServicePage({ params }: PageProps) {
+export default async function ServiceDetailPage({ params }: PageProps) {
   const { category, slug } = await params;
+  const service = await getService(category, slug);
 
-  if (!serviceCategories.includes(category as ServiceCategory)) {
+  if (!service) {
     notFound();
   }
 
-  let title: string | undefined;
-  let eyebrow: string | undefined;
-  let imageSrc = SITE_LOGO;
-  let imageAlt = "Laura de la Riva";
-  let secondaryImages: { src: string; alt: string }[] = [];
-  let paragraphs: string[] = [];
-  let portableDescription: ComponentProps<typeof PortableText>["value"] = null;
-  let foundInCms = false;
-
-  if (assertSanityConfigured()) {
-    try {
-      const service = await client.fetch(serviceByCategoryAndSlugQuery, {
-        category,
-        slug,
-      });
-
-      if (service) {
-        foundInCms = true;
-        title = service.title;
-        eyebrow = `${service.category} · ${service.subcategory}`;
-        portableDescription = service.description ?? null;
-        const image = service.images?.[0];
-        imageSrc = safeImageUrl(image, { width: 1200, height: 1600 });
-        imageAlt = safeImageAlt(image, service.title);
-        if (Array.isArray(service.images) && service.images.length > 1) {
-          secondaryImages = service.images.slice(1).map((img: unknown) => ({
-            src: safeImageUrl(img, { width: 800, height: 800 }),
-            alt: safeImageAlt(img, service.title),
-          }));
-        }
-      }
-    } catch {
-      // Use fallbacks below.
-    }
-  }
-
-  const fallback = getServiceFallback(category, slug);
-  if (!foundInCms && !fallback) {
-    notFound();
-  }
-
-  title ??= fallback?.title ?? "Service";
-  eyebrow ??= fallback
-    ? `${fallback.category} · ${fallback.subcategory}`
-    : category;
-  if (!foundInCms && fallback) {
-    imageSrc = fallback.imageSrc;
-    imageAlt = fallback.imageAlt;
-  }
-  paragraphs = fallback?.body ?? [];
+  // Filter out any invalid items to ensure ONLY uploaded Sanity images display
+  const userImages = service.images?.filter((img: any) => img?.asset?._ref) || [];
 
   return (
-    <SplitScreen
-      imageSrc={imageSrc}
-      imageAlt={imageAlt}
-      secondaryImages={secondaryImages}
-      eyebrow={eyebrow}
-      title={title}
-    >
-      {portableDescription ? (
-        <div className="space-y-4 [&_a]:underline [&_strong]:font-semibold">
-          <PortableText value={portableDescription} />
+    <main className="max-w-6xl mx-auto px-6 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+        {/* Left Column: Text Content */}
+        <div className="md:col-span-7 prose max-w-none">
+          <h1 className="text-3xl font-light mb-6">{service.title}</h1>
+          <CustomPortableText value={service.description} />
         </div>
-      ) : (
-        paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-      )}
-      {fallback?.summary && !portableDescription ? (
-        <p className="opacity-80">{fallback.summary}</p>
-      ) : null}
-    </SplitScreen>
+
+        {/* Right Column: Stacked User Images (Aligned Top-to-Bottom) */}
+        {userImages.length > 0 && (
+          <div className="md:col-span-5 flex flex-col gap-6 sticky top-8">
+            {userImages.map((img: any, idx: number) => (
+              <div key={idx} className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm">
+                <Image
+                  src={urlFor(img).url()}
+                  alt={img.alt || `${service.title} image ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
