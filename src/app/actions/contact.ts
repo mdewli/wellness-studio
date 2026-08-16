@@ -2,9 +2,15 @@
 
 import { Resend } from 'resend';
 
+export type ContactFormState = {
+  ok: boolean;
+  message?: string;
+  error?: string;
+};
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendContactEmail(formData: FormData) {
+export async function sendContactEmail(formData: FormData): Promise<ContactFormState> {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const message = formData.get('message') as string;
@@ -23,13 +29,16 @@ export async function sendContactEmail(formData: FormData) {
 
     if (error) {
       console.error('RESEND ERROR:', error);
-      return { success: false, error: error.message };
+      return { ok: false, error: error.message };
     }
 
     console.log('RESEND SUCCESS:', data);
-    return { success: true };
+    return { ok: true, message: 'Thank you. Your message has been sent to Laura.' };
   } catch (err) {
     console.error('SERVER ACTION CATCH ERROR:', err);
-    return { success: false, error: 'Internal Server Error' };
+    return { ok: false, error: 'Internal Server Error' };
   }
 }
+
+// Alias export to satisfy ContactForm.tsx imports
+export const submitContactForm = sendContactEmail;
