@@ -41,7 +41,7 @@ export default async function ContactPage() {
         <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
           Get in touch
         </p>
-        <h1 className="font-script text-5xl mb-6">Contact</h1>
+        <h1 className="font-serif text-4xl md:text-5xl tracking-wide mb-6">Contact</h1>
         <div className="mt-8 space-y-4 font-serif text-lg">
           <p>
             <a href={`mailto:${email}`} className="underline-offset-4 hover:underline">

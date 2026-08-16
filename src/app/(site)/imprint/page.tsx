@@ -4,6 +4,8 @@ import { assertSanityConfigured } from "@/sanity/env";
 import { client } from "@/sanity/lib/client";
 import { imprintQuery } from "@/sanity/lib/queries";
 
+export const revalidate = 0;
+
 export const metadata = {
   title: "Imprint",
 };
@@ -15,7 +17,7 @@ export default async function ImprintPage() {
     try {
       imprintData = await client.fetch(imprintQuery);
     } catch {
-      // Fall through
+      // Fall through if Sanity unavailable
     }
   }
 
@@ -33,7 +35,9 @@ export default async function ImprintPage() {
         />
       </div>
 
-      <h1 className="font-script text-5xl mb-8">Imprint</h1>
+      <h1 className="font-serif text-4xl md:text-5xl tracking-wide text-[#2A2A2A] mb-8">
+        Imprint
+      </h1>
 
       <div className="space-y-6 font-serif text-base leading-relaxed text-justify">
         {companyName && (
@@ -67,7 +71,7 @@ export default async function ImprintPage() {
           </p>
         )}
 
-        {legalText && (
+        {legalText && legalText.length > 0 && (
           <div className="pt-6 border-t border-black/10 text-justify">
             <CustomPortableText value={legalText} />
           </div>
