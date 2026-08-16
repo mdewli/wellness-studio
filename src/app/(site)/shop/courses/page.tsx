@@ -98,7 +98,7 @@ export default async function OnlineCoursesPage() {
             </div>
             <div className="flex flex-col justify-center gap-4">
               <h2 className="font-script italic text-2xl md:text-3xl tracking-wide">{course.title}</h2>
-              <div className="space-y-3 font-script italic text-base leading-relaxed md:text-lg">
+              <div className="space-y-3 font-serif not-italic text-base leading-relaxed md:text-lg">
                 {course.portable ? (
                   <PortableText value={course.portable} />
                 ) : (

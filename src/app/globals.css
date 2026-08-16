@@ -1,17 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdfbf7;
+  --background: transparent;
   --foreground: #2a2a2a;
-  --cream: #fdfbf7;
-  --charcoal: #2a2a2a;
 }
 
 @theme inline {
-  --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-cream: var(--cream);
-  --color-charcoal: var(--charcoal);
   --font-sans: var(--font-bodoni);
   --font-serif: var(--font-bodoni);
   --font-script: var(--font-script);
@@ -26,7 +21,7 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   width: 100%;
-  color: var(--foreground);
+  color: #2a2a2a;
   font-family: var(--font-bodoni), "Times New Roman", serif;
   font-style: normal;
 }

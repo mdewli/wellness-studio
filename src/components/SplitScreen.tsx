@@ -30,19 +30,19 @@ export function SplitScreen({
   ].filter((img) => img.src && img.src.trim() !== "");
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-8">
+    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6">
       {/* Left Column: Stacked Images (Original Aspect Ratio, Uncropped) */}
       {allImages.length > 0 && (
         <section
           aria-label="Visual"
-          className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-8"
+          className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6"
         >
           {allImages.map((img, idx) => (
             <div key={idx} className="w-full overflow-hidden rounded-lg">
               <img
                 src={img.src}
                 alt={img.alt || `Image ${idx + 1}`}
-                className="w-full h-auto object-contain rounded-lg"
+                className="w-full h-auto object-contain rounded-lg max-h-[350px] md:max-h-none w-full object-cover"
               />
             </div>
           ))}
@@ -52,7 +52,7 @@ export function SplitScreen({
       {/* Right Column: Content with Justified Text */}
       <section
         aria-label="Content"
-        className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-8"
+        className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6"
       >
         {eyebrow ? (
           <p className="font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
