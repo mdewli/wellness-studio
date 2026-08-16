@@ -5,13 +5,6 @@
   --foreground: #2a2a2a;
 }
 
-@theme inline {
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-bodoni);
-  --font-serif: var(--font-bodoni);
-  --font-script: var(--font-script);
-}
-
 body {
   background-color: #fdfbf7;
   background-image: url("/background.jpg");
@@ -26,25 +19,25 @@ body {
   font-style: normal;
 }
 
-header, footer {
-  background-color: transparent !important;
-  background: transparent !important;
-}
-
-/* Force strip all white backgrounds inside mobile menu overlays and navigation blocks */
-header *,
-nav *,
-div[class*="bg-white"],
+/* Remove all unwanted white backgrounds across menu containers */
+header nav,
+header nav *,
 ul[class*="bg-white"],
+div[class*="bg-white"],
 li[class*="bg-white"],
 nav[class*="bg-white"],
 div[class*="bg-slate"],
-ul[class*="bg-slate"],
-.menu-container,
-[role="menu"] {
+.menu-container {
   background-color: transparent !important;
   background: transparent !important;
   box-shadow: none !important;
+}
+
+/* Force mobile dropdown panel to site background tone */
+header nav div[role="menu"],
+header nav .dropdown-menu,
+[role="menu"] {
+  background-color: #fdfbf7 !important;
 }
 
 .font-script {
