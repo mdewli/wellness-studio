@@ -31,8 +31,15 @@ header, footer, nav {
   background: transparent !important;
 }
 
-/* Ensure dropdown menus inherit matching textured background instead of stark white */
-[role="menu"], .dropdown-menu, ul.absolute, div.absolute {
+/* Force all dropdown menus to match the site background */
+nav div,
+nav ul,
+header nav div,
+header nav ul,
+[role="menu"],
+.dropdown-menu,
+div[class*="bg-white"],
+ul[class*="bg-white"] {
   background-color: rgba(253, 251, 247, 0.95) !important;
   backdrop-filter: blur(8px);
 }
