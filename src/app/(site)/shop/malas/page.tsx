@@ -63,7 +63,7 @@ export default async function MalasPage() {
       <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
         Shop
       </p>
-      <h1 className="font-script text-5xl">Malas</h1>
+      <h1 className="font-serif text-4xl md:text-5xl tracking-wide">Malas</h1>
       <p className="mt-4 max-w-xl font-serif text-lg opacity-80">
         Hand-finished malas for practice, meditation, and everyday presence.
       </p>

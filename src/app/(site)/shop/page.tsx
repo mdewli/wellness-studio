@@ -10,7 +10,7 @@ export default function ShopIndexPage() {
       <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
         Offerings
       </p>
-      <h1 className="font-script text-5xl">Shop</h1>
+      <h1 className="font-serif text-4xl md:text-5xl tracking-wide">Shop</h1>
       <ul className="mt-10 space-y-4 border-t border-[#2A2A2A]/10 pt-8">
         <li>
           <Link href="/shop/malas" className="font-serif text-2xl hover:opacity-70">
