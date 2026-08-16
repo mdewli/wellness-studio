@@ -9,7 +9,8 @@ async function getImprint() {
     companyName,
     address,
     email,
-    content
+    content,
+    body
   }`;
   return await client.fetch(query);
 }
@@ -34,6 +35,7 @@ export default async function ImprintPage() {
           <p className="mb-6"><strong>Email:</strong> {imprint.email}</p>
         )}
 
+        {imprint.body && <CustomPortableText value={imprint.body} />}
         {imprint.content && <CustomPortableText value={imprint.content} />}
       </div>
     </main>
