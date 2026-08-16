@@ -1,71 +1,41 @@
-import type { ReactNode } from "react";
+import Image from "next/image";
+import PortableTextRenderer from "@/components/PortableTextRenderer";
 
-type GalleryImage = {
-  src: string;
-  alt: string;
-};
-
-type SplitScreenProps = {
-  imageSrc: string;
-  imageAlt: string;
-  secondaryImages?: GalleryImage[];
-  eyebrow?: string;
+interface SplitScreenProps {
   title: string;
-  children: ReactNode;
-  priority?: boolean;
-};
+  image?: any;
+  content?: any;
+}
 
-export function SplitScreen({
-  imageSrc,
-  imageAlt,
-  secondaryImages = [],
-  eyebrow,
-  title,
-  children,
-}: SplitScreenProps) {
-  // Combine primary and secondary images (ignoring fallbacks)
-  const allImages = [
-    { src: imageSrc, alt: imageAlt },
-    ...secondaryImages,
-  ].filter((img) => img.src && img.src.trim() !== "");
-
+export default function SplitScreen({ title, image, content }: SplitScreenProps) {
   return (
-    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6">
-      {/* Left Column: Stacked Images (Original Aspect Ratio, Uncropped) */}
-      {allImages.length > 0 && (
-        <section
-          aria-label="Visual"
-          className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6"
-        >
-          {allImages.map((img, idx) => (
-            <div key={idx} className="w-full overflow-hidden rounded-lg">
-              <img
-                src={img.src}
-                alt={img.alt || `Image ${idx + 1}`}
-                className="w-full h-auto object-contain rounded-lg max-h-[350px] md:max-h-none w-full object-cover"
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Image */}
+        <div className="w-full">
+          {image?.asset?.url && (
+            <div className="relative w-full aspect-[3/4] max-h-[350px] md:max-h-[600px] rounded-lg overflow-hidden shadow-sm">
+              <Image
+                src={image.asset.url}
+                alt={title || "Page Image"}
+                fill
+                className="object-cover"
+                priority
               />
             </div>
-          ))}
-        </section>
-      )}
-
-      {/* Right Column: Content with Justified Text */}
-      <section
-        aria-label="Content"
-        className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6"
-      >
-        {eyebrow ? (
-          <p className="font-serif not-italic text-sm tracking-[0.2em] uppercase opacity-70">
-            {eyebrow}
-          </p>
-        ) : null}
-        <h1 className="font-script italic text-4xl leading-tight text-[#2A2A2A] md:text-5xl text-left">
-          {title}
-        </h1>
-        <div className="space-y-4 font-serif not-italic text-base leading-relaxed md:text-lg text-justify">
-          {children}
+          )}
         </div>
-      </section>
+
+        {/* Right Column: Heading & Body */}
+        <div className="w-full flex flex-col justify-start">
+          <h1 className="font-script italic text-4xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
+            {title}
+          </h1>
+          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90 space-y-4">
+            {content && <PortableTextRenderer value={content} />}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

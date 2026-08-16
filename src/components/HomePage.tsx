@@ -1,53 +1,55 @@
-import { SplitScreen } from "@/components/SplitScreen";
-import { SITE_LOGO } from "@/lib/site";
-import { assertSanityConfigured } from "@/sanity/env";
-import { client } from "@/sanity/lib/client";
-import { safeImageAlt, safeImageUrl } from "@/sanity/lib/image";
-import { bioQuery } from "@/sanity/lib/queries";
+import Image from "next/image";
+import Link from "next/link";
 
-export async function HomePage() {
-  let title = "Laura de la Riva";
-  let imageSrc = SITE_LOGO;
-  let imageAlt = "Laura de la Riva — music, yoga, and therapy";
-  let paragraphs = [
-    "A practice woven from sound, movement, and healing. Live concerts and sound baths, workshops and coaching, sound healing and nada yoga — offered with presence and care.",
-    "Each session invites stillness, resonance, and a return to the body's own quiet intelligence.",
-  ];
+interface HomePageProps {
+  data: {
+    heroImage?: any;
+    bioParagraphs?: string[];
+  };
+}
 
-  if (assertSanityConfigured()) {
-    try {
-      const bio = await client.fetch(bioQuery);
-      if (bio) {
-        title = bio.title || title;
-        imageSrc = safeImageUrl(bio.portrait, { width: 1200, height: 1600 });
-        imageAlt = safeImageAlt(bio.portrait, imageAlt);
-        const textBlocks =
-          bio.body
-            ?.map(
-              (block: { _type?: string; children?: { text?: string }[] }) => {
-                if (block._type !== "block" || !block.children) return null;
-                return block.children.map((child) => child.text || "").join("");
-              },
-            )
-            .filter(Boolean) ?? [];
-        if (textBlocks.length) paragraphs = textBlocks;
-      }
-    } catch {
-      // Keep fallbacks when Sanity is unreachable.
-    }
-  }
-
+export default function HomePage({ data }: HomePageProps) {
   return (
-    <SplitScreen
-      imageSrc={imageSrc}
-      imageAlt={imageAlt}
-      eyebrow="Music · Yoga · Therapy"
-      title={title}
-      priority
-    >
-      {paragraphs.map((paragraph) => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
-    </SplitScreen>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Image */}
+        <div className="w-full">
+          {data?.heroImage?.asset?.url && (
+            <div className="relative w-full aspect-[3/4] max-h-[350px] md:max-h-[600px] rounded-lg overflow-hidden shadow-sm">
+              <Image
+                src={data.heroImage.asset.url}
+                alt="Laura de la Riva"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Right Column: Heading & Body Text */}
+        <div className="w-full flex flex-col justify-start">
+          <h1 className="font-script italic text-4xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
+            Tuning the instrument of the self...
+          </h1>
+          <div className="space-y-4 font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90">
+            {data?.bioParagraphs && data.bioParagraphs.length > 0 ? (
+              data.bioParagraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))
+            ) : (
+              <>
+                <p>
+                  My work moves between various disciplines: music, yoga, sound healing, esoteric studies, and the craft of mala making. It is my strong belief that these practices share a single goal: continuously gaining deeper insight into how sound, breath, symbol, and stillness shape the human experience.
+                </p>
+                <p>
+                  My background as a musician and researcher of ethnomusicology centers on the musical traditions of Eastern Europe, Turkey, and India. I am also a certified music therapist with additional training in phonophoresis.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
