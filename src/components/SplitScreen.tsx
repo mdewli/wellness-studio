@@ -6,7 +6,17 @@ interface SplitScreenProps {
   content?: any;
 }
 
+function getImageUrl(img: any): string | null {
+  if (!img) return null;
+  if (typeof img === "string") return img;
+  if (img.asset?.url) return img.asset.url;
+  if (img.url) return img.url;
+  return null;
+}
+
 export function SplitScreen({ title, image, content }: SplitScreenProps) {
+  const imageUrl = getImageUrl(image);
+
   const renderContent = () => {
     if (!content) return null;
     if (typeof content === "string") {
@@ -26,23 +36,22 @@ export function SplitScreen({ title, image, content }: SplitScreenProps) {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
         {/* Left Column: Image */}
         <div className="w-full">
-          {image?.asset?.url ? (
-            <div className="relative w-full aspect-[3/4] max-h-[350px] md:max-h-[600px] rounded-lg overflow-hidden shadow-sm">
+          {imageUrl ? (
+            <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-sm">
               <Image
-                src={image.asset.url}
+                src={imageUrl}
                 alt={title || "Page Image"}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />
             </div>
-          ) : (
-            <div className="relative w-full aspect-[3/4] max-h-[350px] md:max-h-[600px] rounded-lg overflow-hidden shadow-sm bg-neutral-200" />
-          )}
+          ) : null}
         </div>
 
         {/* Right Column: Heading & Body */}
