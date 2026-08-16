@@ -100,7 +100,7 @@ export default async function ImprintPage() {
         {vatId ? <p>VAT ID: {vatId}</p> : null}
         {legalText ? (
           <div className="mt-6 border-t border-[#2A2A2A]/10 pt-6 space-y-4">
-            <PortableText value={legalText} />
+            <PortableText value={legalText} components={portableTextComponents} />
           </div>
         ) : (
           <p className="opacity-70">
