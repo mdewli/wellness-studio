@@ -13,7 +13,7 @@ export function HomePage({ data }: HomePageProps) {
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
         {/* Left Column: Image */}
         <div className="w-full">
-          {data?.heroImage?.asset?.url && (
+          {data?.heroImage?.asset?.url ? (
             <div className="relative w-full aspect-[3/4] max-h-[350px] md:max-h-[600px] rounded-lg overflow-hidden shadow-sm">
               <Image
                 src={data.heroImage.asset.url}
@@ -23,10 +23,12 @@ export function HomePage({ data }: HomePageProps) {
                 priority
               />
             </div>
+          ) : (
+            <div className="relative w-full aspect-[3/4] max-h-[350px] md:max-h-[600px] rounded-lg overflow-hidden shadow-sm bg-neutral-200" />
           )}
         </div>
 
-        {/* Right Column: Heading & Body Text */}
+        {/* Right Column: Heading & Body Text Aligned */}
         <div className="w-full flex flex-col justify-start">
           <h1 className="font-script italic text-4xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
             Tuning the instrument of the self...
