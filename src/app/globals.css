@@ -31,24 +31,18 @@ header, footer {
   background: transparent !important;
 }
 
-/* Force top navigation container transparent */
-header nav,
-header nav > div,
+/* Strip all white background panels inside mobile menu overlays and navigation blocks */
+div[class*="bg-white"],
+ul[class*="bg-white"],
+li[class*="bg-white"],
 nav[class*="bg-white"],
-header [class*="bg-white"] {
+div[class*="bg-slate"],
+ul[class*="bg-slate"],
+.menu-container,
+[role="menu"] {
   background-color: transparent !important;
   background: transparent !important;
-}
-
-/* Force all dropdown menus to match cream site background */
-header nav ul ul,
-header nav div[role="menu"],
-header nav .dropdown,
-.dropdown-menu,
-[role="menu"] {
-  background-color: #fdfbf7 !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: none !important;
 }
 
 .font-script {

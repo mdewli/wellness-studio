@@ -7,8 +7,8 @@ interface HomePageProps {
   };
 }
 
-function resolveSanityUrl(image: any): string | null {
-  if (!image) return null;
+function resolveSanityUrl(image: any): string {
+  if (!image) return "/hero.jpg";
   if (typeof image === "string") return image;
   if (image.asset?.url) return image.asset.url;
   if (image.url) return image.url;
@@ -25,7 +25,7 @@ function resolveSanityUrl(image: any): string | null {
       return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dimensions}.${format}`;
     }
   }
-  return null;
+  return "/hero.jpg";
 }
 
 export function HomePage({ data }: HomePageProps) {
@@ -34,27 +34,21 @@ export function HomePage({ data }: HomePageProps) {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-10">
       <div className="flex flex-col md:flex-row gap-6 lg:gap-12 items-start">
-        {/* Left Column: Image */}
+        {/* Image Container */}
         <div className="w-full md:w-1/2 flex-shrink-0">
-          <div className="relative w-full h-[240px] sm:h-[360px] md:h-[520px] rounded-lg overflow-hidden shadow-sm bg-[#f5f2eb]">
-            {imageUrl ? (
-              <Image
-                src={imageUrl}
-                alt="Laura de la Riva"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-charcoal/40 text-sm">
-                No image loaded
-              </div>
-            )}
+          <div className="relative w-full h-[280px] sm:h-[360px] md:h-[520px] rounded-lg overflow-hidden shadow-sm">
+            <Image
+              src={imageUrl}
+              alt="Laura de la Riva"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
 
-        {/* Right Column: Text */}
+        {/* Text Container */}
         <div className="w-full md:w-1/2 flex flex-col justify-start">
           <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-charcoal leading-tight">
             Tuning the instrument of the self...
