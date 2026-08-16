@@ -18,12 +18,9 @@ export async function sendContactEmail(
   const email = formData.get('email') as string;
   const message = formData.get('message') as string;
 
-  console.log('--- EXECUTING RESEND ACTION ---');
-  console.log('API Key present:', !!process.env.RESEND_API_KEY);
-
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Laura de la Riva <onboarding@resend.dev>',
+      from: 'Laura de la Riva <contact@laura-delariva.com>',
       to: [process.env.CONTACT_EMAIL || 'mayankdewli@gmail.com'],
       replyTo: email,
       subject: `New Message from ${name}`,
