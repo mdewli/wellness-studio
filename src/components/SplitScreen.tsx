@@ -30,12 +30,12 @@ export function SplitScreen({
   ].filter((img) => img.src && img.src.trim() !== "");
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col md:min-h-[calc(100dvh-8.5rem)] md:flex-row gap-10 py-12 px-6">
+    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0">
       {/* Left Column: Stacked Images (Original Aspect Ratio, Uncropped) */}
       {allImages.length > 0 && (
         <section
           aria-label="Visual"
-          className="flex flex-1 flex-col gap-6 items-start justify-start sticky top-8"
+          className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0"
         >
           {allImages.map((img, idx) => (
             <div key={idx} className="w-full overflow-hidden rounded-lg">
@@ -52,17 +52,17 @@ export function SplitScreen({
       {/* Right Column: Content with Justified Text */}
       <section
         aria-label="Content"
-        className="flex flex-1 flex-col justify-start gap-6"
+        className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0"
       >
         {eyebrow ? (
-          <p className="font-serif text-sm tracking-[0.2em] uppercase opacity-70">
+          <p className="font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="font-serif text-4xl leading-tight text-[#2A2A2A] md:text-5xl text-left">
+        <h1 className="font-script italic text-4xl leading-tight text-[#2A2A2A] md:text-5xl text-left">
           {title}
         </h1>
-        <div className="space-y-4 font-serif text-base leading-relaxed md:text-lg text-justify">
+        <div className="space-y-4 font-script italic text-base leading-relaxed md:text-lg text-justify">
           {children}
         </div>
       </section>

@@ -51,7 +51,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         {/* Right Column: Title & Justified Content */}
         <div className={`prose max-w-none text-justify ${userImages.length > 0 ? 'md:col-span-7' : 'md:col-span-12'}`}>
-          <h1 className="font-serif text-4xl md:text-5xl tracking-wide text-left text-[#2A2A2A] mb-6">{service.title}</h1>
+          <h1 className="font-script italic text-4xl md:text-5xl tracking-wide text-left text-[#2A2A2A] mb-6">{service.title}</h1>
           <CustomPortableText value={service.description} />
         </div>
       </div>

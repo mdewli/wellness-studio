@@ -38,11 +38,11 @@ export default async function ContactPage() {
             className="h-20 w-20 object-contain rounded-md"
           />
         </div>
-        <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
+        <p className="mb-3 font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
           Get in touch
         </p>
-        <h1 className="font-serif text-4xl md:text-5xl tracking-wide mb-6">Contact</h1>
-        <div className="mt-8 space-y-4 font-serif text-lg">
+        <h1 className="font-script italic text-4xl md:text-5xl tracking-wide mb-6">Contact</h1>
+        <div className="mt-8 space-y-4 font-script italic text-lg">
           <p>
             <a href={`mailto:${email}`} className="underline-offset-4 hover:underline">
               {email}

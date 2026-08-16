@@ -73,11 +73,11 @@ export default async function OnlineCoursesPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-8 py-16 md:px-14">
-      <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
+      <p className="mb-3 font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
         Shop
       </p>
-      <h1 className="font-serif text-4xl md:text-5xl tracking-wide">Online Courses</h1>
-      <p className="mt-4 max-w-xl font-serif text-lg opacity-80">
+      <h1 className="font-script italic text-4xl md:text-5xl tracking-wide">Online Courses</h1>
+      <p className="mt-4 max-w-xl font-script italic text-lg opacity-80">
         Self-paced courses hosted on Udemy — learn at your own rhythm.
       </p>
 
@@ -97,8 +97,8 @@ export default async function OnlineCoursesPage() {
               />
             </div>
             <div className="flex flex-col justify-center gap-4">
-              <h2 className="font-serif text-2xl md:text-3xl tracking-wide">{course.title}</h2>
-              <div className="space-y-3 font-serif text-base leading-relaxed md:text-lg">
+              <h2 className="font-script italic text-2xl md:text-3xl tracking-wide">{course.title}</h2>
+              <div className="space-y-3 font-script italic text-base leading-relaxed md:text-lg">
                 {course.portable ? (
                   <PortableText value={course.portable} />
                 ) : (

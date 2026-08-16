@@ -35,11 +35,11 @@ export default async function ImprintPage() {
         />
       </div>
 
-      <h1 className="font-serif text-4xl md:text-5xl tracking-wide text-[#2A2A2A] mb-8">
+      <h1 className="font-script italic text-4xl md:text-5xl tracking-wide text-[#2A2A2A] mb-8">
         Imprint
       </h1>
 
-      <div className="space-y-6 font-serif text-base leading-relaxed text-justify">
+      <div className="space-y-6 font-script italic text-base leading-relaxed text-justify">
         {companyName && (
           <p>
             <strong>Company Name:</strong> {companyName}

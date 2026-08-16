@@ -60,11 +60,11 @@ export default async function MalasPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-8 py-16 md:px-14">
-      <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
+      <p className="mb-3 font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
         Shop
       </p>
-      <h1 className="font-serif text-4xl md:text-5xl tracking-wide">Malas</h1>
-      <p className="mt-4 max-w-xl font-serif text-lg opacity-80">
+      <h1 className="font-script italic text-4xl md:text-5xl tracking-wide">Malas</h1>
+      <p className="mt-4 max-w-xl font-script italic text-lg opacity-80">
         Hand-finished malas for practice, meditation, and everyday presence.
       </p>
 
@@ -81,7 +81,7 @@ export default async function MalasPage() {
                   sizes="(max-width: 640px) 100vw, 40vw"
                 />
               </div>
-              <h2 className="font-serif text-2xl">{product.title}</h2>
+              <h2 className="font-script italic text-2xl">{product.title}</h2>
               <p className="mt-1 text-sm tracking-[0.12em] uppercase opacity-70">
                 €{product.price.toFixed(2)}
               </p>

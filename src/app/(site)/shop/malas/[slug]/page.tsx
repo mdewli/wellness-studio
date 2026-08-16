@@ -59,7 +59,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
         {/* Right Column: Title, Price & Justified Content */}
         <div className={`prose max-w-none text-justify ${allImages.length > 0 ? 'md:col-span-7' : 'md:col-span-12'}`}>
-          <h1 className="font-serif text-4xl md:text-5xl tracking-wide text-left text-[#2A2A2A] mb-2">{product.title}</h1>
+          <h1 className="font-script italic text-4xl md:text-5xl tracking-wide text-left text-[#2A2A2A] mb-2">{product.title}</h1>
           {product.price && (
             <p className="text-xl font-normal text-left mb-6">€{product.price}</p>
           )}
