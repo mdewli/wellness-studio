@@ -55,14 +55,14 @@ export function SplitScreen({
         className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start w-full min-h-0 py-6"
       >
         {eyebrow ? (
-          <p className="font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
+          <p className="font-serif not-italic text-sm tracking-[0.2em] uppercase opacity-70">
             {eyebrow}
           </p>
         ) : null}
         <h1 className="font-script italic text-4xl leading-tight text-[#2A2A2A] md:text-5xl text-left">
           {title}
         </h1>
-        <div className="space-y-4 font-script italic text-base leading-relaxed md:text-lg text-justify">
+        <div className="space-y-4 font-serif not-italic text-base leading-relaxed md:text-lg text-justify">
           {children}
         </div>
       </section>

@@ -26,6 +26,11 @@ body {
   font-style: normal;
 }
 
+header, footer, nav {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
 .font-script {
   font-family: var(--font-script), cursive;
 }

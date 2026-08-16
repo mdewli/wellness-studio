@@ -7,7 +7,7 @@ export const metadata = {
 export default function ShopIndexPage() {
   return (
     <div className="mx-auto max-w-3xl px-8 py-16 md:px-14">
-      <p className="mb-3 font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
+      <p className="mb-3 font-serif not-italic text-sm tracking-[0.2em] uppercase opacity-70">
         Offerings
       </p>
       <h1 className="font-script italic text-4xl md:text-5xl tracking-wide">Shop</h1>

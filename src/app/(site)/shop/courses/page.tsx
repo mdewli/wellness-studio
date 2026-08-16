@@ -73,11 +73,11 @@ export default async function OnlineCoursesPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-8 py-16 md:px-14">
-      <p className="mb-3 font-script italic text-sm tracking-[0.2em] uppercase opacity-70">
+      <p className="mb-3 font-serif not-italic text-sm tracking-[0.2em] uppercase opacity-70">
         Shop
       </p>
       <h1 className="font-script italic text-4xl md:text-5xl tracking-wide">Online Courses</h1>
-      <p className="mt-4 max-w-xl font-script italic text-lg opacity-80">
+      <p className="mt-4 max-w-xl font-serif not-italic text-lg opacity-80">
         Self-paced courses hosted on Udemy — learn at your own rhythm.
       </p>
 
