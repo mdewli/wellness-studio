@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 interface SplitScreenProps {
   title: string;
@@ -29,6 +30,7 @@ function resolveSanityUrl(image: any): string | null {
 
 export function SplitScreen({ title, image, content }: SplitScreenProps) {
   const imageUrl = resolveSanityUrl(image);
+  const [imgError, setImgError] = useState(false);
 
   const renderContent = () => {
     if (!content) return null;
@@ -49,11 +51,11 @@ export function SplitScreen({ title, image, content }: SplitScreenProps) {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-10">
-      <div className="flex flex-col md:flex-row gap-6 lg:gap-12 items-start">
-        {imageUrl && (
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
+        {imageUrl && !imgError && (
           <div className="w-full md:w-1/2 flex-shrink-0">
-            <div className="relative w-full h-[60vh] min-h-[280px] max-h-[480px] md:h-[550px] md:max-h-none rounded-lg overflow-hidden shadow-sm">
+            <div className="relative w-full h-[320px] sm:h-[420px] md:h-[550px] rounded-lg overflow-hidden shadow-sm bg-stone-200/50">
               <Image
                 src={imageUrl}
                 alt={title || "Page Image"}
@@ -62,13 +64,14 @@ export function SplitScreen({ title, image, content }: SplitScreenProps) {
                 unoptimized
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
+                onError={() => setImgError(true)}
               />
             </div>
           </div>
         )}
 
         <div className="w-full md:w-1/2 flex flex-col justify-start">
-          <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-charcoal leading-tight">
+          <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
             {title}
           </h1>
           <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90 space-y-4">

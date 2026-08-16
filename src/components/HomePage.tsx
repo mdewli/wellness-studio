@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 interface HomePageProps {
   data?: {
@@ -30,28 +31,38 @@ function resolveSanityUrl(image: any): string {
 
 export function HomePage({ data }: HomePageProps) {
   const imageUrl = resolveSanityUrl(data?.heroImage);
+  const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-10">
-      <div className="flex flex-col md:flex-row gap-6 lg:gap-12 items-start">
-        {/* Mobile Viewport Image Box (60vh max on mobile to prevent over-scrolling) */}
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
+        {/* Left Column: Image */}
         <div className="w-full md:w-1/2 flex-shrink-0">
-          <div className="relative w-full h-[60vh] min-h-[280px] max-h-[480px] md:h-[550px] md:max-h-none rounded-lg overflow-hidden shadow-sm">
-            <Image
-              src={imageUrl}
-              alt="Laura de la Riva"
-              fill
-              priority
-              unoptimized
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-center"
-            />
+          <div className="relative w-full h-[320px] sm:h-[420px] md:h-[550px] rounded-lg overflow-hidden shadow-sm bg-stone-200/50">
+            {!imgError ? (
+              <Image
+                src={imageUrl}
+                alt="Laura de la Riva"
+                fill
+                priority
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <img
+                src="/hero.jpg"
+                alt="Laura de la Riva"
+                className="w-full h-full object-cover object-center"
+              />
+            )}
           </div>
         </div>
 
-        {/* Text Box - Flows Below Image on Mobile */}
+        {/* Right Column: Heading & Paragraphs */}
         <div className="w-full md:w-1/2 flex flex-col justify-start">
-          <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-charcoal leading-tight">
+          <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
             Tuning the instrument of the self...
           </h1>
           <div className="space-y-4 font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90">
