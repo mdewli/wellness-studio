@@ -1,15 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 
 interface HomePageProps {
-  data: {
+  data?: {
     heroImage?: any;
     bioParagraphs?: string[];
   };
 }
 
-export function HomePage
-export default HomePage;({ data }: HomePageProps) {
+export function HomePage({ data }: HomePageProps) {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -54,3 +52,5 @@ export default HomePage;({ data }: HomePageProps) {
     </div>
   );
 }
+
+export default HomePage;

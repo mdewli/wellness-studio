@@ -7,7 +7,7 @@ interface SplitScreenProps {
   content?: any;
 }
 
-export default function SplitScreen({ title, image, content }: SplitScreenProps) {
+export function SplitScreen({ title, image, content }: SplitScreenProps) {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -39,3 +39,5 @@ export default function SplitScreen({ title, image, content }: SplitScreenProps)
     </div>
   );
 }
+
+export default SplitScreen;
