@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { useState } from "react";
 
@@ -60,7 +62,7 @@ export function HomePage({ data }: HomePageProps) {
           </div>
         </div>
 
-        {/* Right Column: Heading & Paragraphs */}
+        {/* Right Column: Text */}
         <div className="w-full md:w-1/2 flex flex-col justify-start">
           <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
             Tuning the instrument of the self...
