@@ -28,6 +28,7 @@ body {
   width: 100%;
   color: var(--foreground);
   font-family: var(--font-bodoni), "Times New Roman", serif;
+  font-style: normal;
 }
 
 .font-script {
