@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { assertSanityConfigured } from "@/sanity/env";
 import { client } from "@/sanity/lib/client";
@@ -28,10 +29,19 @@ export default async function ContactPage() {
   return (
     <div className="mx-auto grid max-w-6xl gap-12 px-8 py-16 md:grid-cols-2 md:px-14">
       <div>
+        <div className="mb-6">
+          <Image
+            src="/logo_image.jpg"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="h-20 w-20 object-contain rounded-md"
+          />
+        </div>
         <p className="mb-3 font-serif text-sm tracking-[0.2em] uppercase opacity-70">
           Get in touch
         </p>
-        <h1 className="font-script text-5xl">Contact</h1>
+        <h1 className="font-script text-5xl mb-6">Contact</h1>
         <div className="mt-8 space-y-4 font-serif text-lg">
           <p>
             <a href={`mailto:${email}`} className="underline-offset-4 hover:underline">
