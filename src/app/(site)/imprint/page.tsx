@@ -1,8 +1,43 @@
 import type { ComponentProps } from "react";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import { assertSanityConfigured } from "@/sanity/env";
 import { client } from "@/sanity/lib/client";
 import { imprintQuery } from "@/sanity/lib/queries";
+
+const portableTextComponents = {
+  block: {
+    normal: ({ children }: any) => <p className="mb-4 last:mb-0 leading-relaxed">{children}</p>,
+    h1: ({ children }: any) => <h1 className="text-3xl font-bold mb-4 mt-6 first:mt-0">{children}</h1>,
+    h2: ({ children }: any) => <h2 className="text-2xl font-semibold mb-3 mt-5 first:mt-0">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-xl font-medium mb-2 mt-4 first:mt-0">{children}</h3>,
+    blockquote: ({ children }: any) => (
+      <blockquote className="border-l-4 border-[#2A2A2A]/20 pl-4 italic my-4">{children}</blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }: any) => <ul className="list-disc pl-6 mb-4 space-y-1.5">{children}</ul>,
+    number: ({ children }: any) => <ol className="list-decimal pl-6 mb-4 space-y-1.5">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }: any) => <li>{children}</li>,
+    number: ({ children }: any) => <li>{children}</li>,
+  },
+  marks: {
+    link: ({ children, value }: any) => {
+      const rel = !value?.href?.startsWith("/") ? "noreferrer noopener" : undefined;
+      return (
+        <a
+          href={value?.href}
+          rel={rel}
+          target={rel ? "_blank" : undefined}
+          className="underline underline-offset-4 hover:opacity-80 transition-opacity"
+        >
+          {children}
+        </a>
+      );
+    },
+  },
+};
 
 export const metadata = {
   title: "Imprint",
