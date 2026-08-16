@@ -5,34 +5,49 @@
   --foreground: #2a2a2a;
 }
 
-body {
-  background-color: #fdfbf7;
-  background-image: url("/background.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+html, body {
+  background-color: #f7f3eb !important;
+  background-image: url("/background.jpg") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
   min-height: 100vh;
   width: 100%;
   color: #2a2a2a;
   font-family: var(--font-bodoni), "Times New Roman", serif;
 }
 
-/* Clear lingering white or off-white container backgrounds */
+/* Force Header, Footer, and Navigation backgrounds to remain completely transparent */
 header,
+footer,
 nav,
-.menu-overlay,
-.menu-container {
+header *,
+footer * {
   background-color: transparent !important;
   background: transparent !important;
   box-shadow: none !important;
+  border-color: transparent !important;
 }
 
-/* Fullscreen mobile menu panel transparent backdrop */
-div[role="dialog"],
-.mobile-menu-panel {
-  background-color: rgba(253, 251, 247, 0.96) !important;
-  min-height: 100vh !important;
+/* Style Dropdown Menu and Mobile Nav overlays to use texture background */
+[role="menu"],
+[role="dialog"],
+ul[class*="dropdown"],
+div[class*="dropdown"],
+.mobile-menu-container {
+  background-color: #f7f3eb !important;
+  background-image: url("/background.jpg") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Styling for buttons and menu items */
+button, 
+a {
+  background-color: transparent !important;
 }
 
 .font-script {
