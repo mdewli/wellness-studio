@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import React from "react";
 
 interface PageLayoutProps {
   title?: string;
@@ -33,7 +32,6 @@ function getSanityUrl(image: any): string | null {
 }
 
 export default function PageLayout({ title, images, heroImage, content, paragraphs }: PageLayoutProps) {
-  // Collect all images into array
   const rawImages = images && images.length > 0 ? images : heroImage ? [heroImage] : [];
   const imageUrls = rawImages.map(getSanityUrl).filter(Boolean) as string[];
 
@@ -60,51 +58,41 @@ export default function PageLayout({ title, images, heroImage, content, paragrap
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
       <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
         
-        {/* Left Column: Images stacked vertically */}
+        {/* Left Column (Desktop) / Top Column (Mobile): All Images */}
         <div className="w-full md:w-1/2 flex flex-col gap-6 flex-shrink-0">
           {imageUrls.length > 0 ? (
             imageUrls.map((url, idx) => (
-              <div key={idx} className="relative w-full h-[320px] sm:h-[420px] md:h-[500px] rounded-lg overflow-hidden shadow-sm bg-stone-200/40">
+              <div key={idx} className="relative w-full rounded-lg overflow-hidden shadow-sm bg-stone-200/40">
                 <img
                   src={url}
                   alt={title || "Studio Image"}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-auto object-cover object-center block"
                   onError={(e) => {
-                    // Fallback to local image if Sanity URL fails
                     (e.target as HTMLImageElement).src = "/hero.jpg";
                   }}
                 />
               </div>
             ))
           ) : (
-            <div className="relative w-full h-[320px] sm:h-[420px] md:h-[500px] rounded-lg overflow-hidden shadow-sm bg-stone-200/40">
+            <div className="relative w-full rounded-lg overflow-hidden shadow-sm bg-stone-200/40">
               <img
                 src="/hero.jpg"
                 alt="Laura de la Riva"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-auto object-cover object-center block"
               />
             </div>
           )}
         </div>
 
-        {/* Right Column: Italic Heading + Serif Body Text */}
-        <div className="w-full md:w-1/2 flex flex-col justify-start">
+        {/* Right Column (Desktop) / Bottom Column (Mobile): Italic Title + Serif Content */}
+        <div className="w-full md:w-1/2 flex flex-col justify-start pt-2 md:pt-0">
           {title && (
             <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
               {title}
             </h1>
           )}
           <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90 space-y-4">
-            {renderContent() || (
-              <>
-                <p>
-                  My work moves between various disciplines: music, yoga, sound healing, esoteric studies, and the craft of mala making. It is my strong belief that these practices share a single goal: continuously gaining deeper insight into how sound, breath, symbol, and stillness shape the human experience.
-                </p>
-                <p>
-                  My background as a musician and researcher of ethnomusicology centers on the musical traditions of Eastern Europe, Turkey, and India. I am also a certified music therapist with additional training in phonophoresis.
-                </p>
-              </>
-            )}
+            {renderContent()}
           </div>
         </div>
 

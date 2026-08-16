@@ -16,28 +16,23 @@ body {
   width: 100%;
   color: #2a2a2a;
   font-family: var(--font-bodoni), "Times New Roman", serif;
-  font-style: normal;
 }
 
-/* Remove all unwanted white backgrounds across menu containers */
-header nav,
-header nav *,
-ul[class*="bg-white"],
-div[class*="bg-white"],
-li[class*="bg-white"],
-nav[class*="bg-white"],
-div[class*="bg-slate"],
+/* Clear lingering white or off-white container backgrounds */
+header,
+nav,
+.menu-overlay,
 .menu-container {
   background-color: transparent !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
-/* Force mobile dropdown panel to site background tone */
-header nav div[role="menu"],
-header nav .dropdown-menu,
-[role="menu"] {
-  background-color: #fdfbf7 !important;
+/* Fullscreen mobile menu panel transparent backdrop */
+div[role="dialog"],
+.mobile-menu-panel {
+  background-color: rgba(253, 251, 247, 0.96) !important;
+  min-height: 100vh !important;
 }
 
 .font-script {
