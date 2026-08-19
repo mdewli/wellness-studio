@@ -98,7 +98,7 @@ function Dropdown({
       <ul
         id={menuId}
         role="menu"
-        className={`absolute left-0 top-full z-50 mt-0 min-w-[13rem] border border-[#2A2A2A]/15 bg-[#FDFBF7] py-2 shadow-md transition ${
+        className={`absolute left-0 top-full z-50 mt-0 min-w-[13rem] border border-[#2A2A2A]/15 py-2 shadow-md transition ${
           isOpen
             ? "pointer-events-auto visible opacity-100"
             : "pointer-events-none invisible opacity-0"
@@ -135,7 +135,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[#2A2A2A]/10">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4 md:px-10">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 md:px-10">
         <Link href="/" className="group flex min-w-0 items-center gap-3">
           <SafeImage
             src={SITE_LOGO}
@@ -157,7 +157,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
 
         <nav
           aria-label="Main"
-          className="hidden lg:block"
+          className="hidden lg:block ml-auto"
           onMouseLeave={() => setOpenKey(null)}
         >
           <ul className="relative flex items-center gap-0">

@@ -29,12 +29,12 @@ function urlForSanity(source: any): string | null {
 
 export function HomePage({ data }: HomePageProps) {
   // Direct Sanity Image mapping
-  const imageRef = data?.heroImage || (data?.images && data.images[0]);
+  const imageRef = data?.portrait || data?.heroImage || (data?.images && data.images[0]);
   const imageUrl = urlForSanity(imageRef);
 
   // Direct Sanity Text mapping
   const titleText = data?.title;
-  const content = data?.bioText || data?.bio || data?.bioParagraphs || data?.content;
+  const content = data?.body || data?.bioText || data?.bio || data?.bioParagraphs || data?.content;
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
