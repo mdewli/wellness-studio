@@ -64,7 +64,7 @@ export function HomePage({ data }: HomePageProps) {
               {titleText}
             </h1>
           )}
-          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90 space-y-4">
+          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-[#2A2A2A]/90 space-y-4 text-justify">
             {Array.isArray(content) ? (
               content.map((item: any, idx: number) => {
                 if (typeof item === "string") return <p key={idx}>{item}</p>;

@@ -86,7 +86,7 @@ export default function PageLayout(props: PageLayoutProps) {
               {title}
             </h1>
           )}
-          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90 space-y-4">
+          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-[#2A2A2A]/90 space-y-4 text-justify">
             {renderContent()}
           </div>
         </div>
