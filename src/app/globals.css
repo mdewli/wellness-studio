@@ -49,16 +49,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
   overflow: visible !important;
 }
 
-/* Clear hardcoded white/solid header & footer backgrounds */
-header,
-footer,
-nav {
-  background-color: transparent !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-  width: 100% !important;
-}
+
 
 /* Dropdown and Overlay Menu styling */
 [role="menu"],
