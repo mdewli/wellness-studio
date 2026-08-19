@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   description: "Music, yoga, and therapy with Laura de la Riva.",
 };
 
+
+export const metadata = {
+  viewport: "width=device-width, initial-scale=1.0",
+};
+
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const navItems = await getMainNav();
 

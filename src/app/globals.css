@@ -5,7 +5,18 @@
   --foreground: #2a2a2a;
 }
 
-html, body {
+/* Ensure Viewport and Base Layout scale naturally */
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
   background-color: #f7f3eb !important;
   background-image: url("/background.jpg") !important;
   background-size: cover !important;
@@ -16,40 +27,92 @@ html, body {
   width: 100%;
   color: #2a2a2a;
   font-family: var(--font-bodoni), "Times New Roman", serif;
+  overflow-x: hidden;
 }
 
-/* Force Header, Footer, and Navigation backgrounds to remain completely transparent */
+/* Rule 2: All images fluid with automatic height */
+img, svg, video {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* Rule 4: Word wrapping & text safety */
+p, h1, h2, h3, h4, h5, h6, span, a {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  hyphens: auto;
+}
+
+/* Rule 7: Prevent hidden text cutoffs */
+.text-container, article, main, section {
+  overflow: visible !important;
+}
+
+/* Clear hardcoded white/solid header & footer backgrounds */
 header,
 footer,
-nav,
-header *,
-footer * {
+nav {
   background-color: transparent !important;
   background: transparent !important;
   box-shadow: none !important;
-  border-color: transparent !important;
+  border: none !important;
+  width: 100% !important;
 }
 
-/* Style Dropdown Menu and Mobile Nav overlays to use texture background */
+/* Dropdown and Overlay Menu styling */
 [role="menu"],
 [role="dialog"],
-ul[class*="dropdown"],
-div[class*="dropdown"],
-.mobile-menu-container {
+.mobile-menu-overlay {
   background-color: #f7f3eb !important;
   background-image: url("/background.jpg") !important;
   background-size: cover !important;
   background-position: center center !important;
+  width: 100% !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* Styling for buttons and menu items */
-button, 
-a {
+button, a {
   background-color: transparent !important;
 }
 
 .font-script {
   font-family: var(--font-script), cursive;
+}
+
+/* Rules 1, 3, 5, 6: Media Queries for screens under 768px */
+@media screen and (max-width: 767px) {
+  /* Fluid padding and clamp-based sizing */
+  body {
+    padding-left: clamp(0.75rem, 3vw, 1.5rem);
+    padding-right: clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  /* Force column stacking on main structural containers */
+  .flex-layout, 
+  .grid-layout,
+  main > div {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Scaled down typography for small screens */
+  h1, .font-script {
+    font-size: clamp(2rem, 8vw, 3.25rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  p, body {
+    font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Full-width responsive image wrappers */
+  .image-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 1rem;
+  }
 }
