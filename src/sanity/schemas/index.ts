@@ -1,3 +1,4 @@
+import blockContent from './blockContent';
 import { bio } from "./bio";
 import { contactInfo } from "./contactInfo";
 import { imprint } from "./imprint";
