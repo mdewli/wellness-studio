@@ -57,17 +57,7 @@ export default function PageLayout(props: PageLayoutProps) {
       return <p>{bodyData}</p>;
     }
 
-    // Default Bio Content Fallback
-    return (
-      <>
-        <p>
-          My work moves between various disciplines: music, yoga, sound healing, esoteric studies, and the craft of mala making. It is my strong belief that these practices share a single goal: continuously gaining deeper insight into how sound, breath, symbol, and stillness shape the human experience.
-        </p>
-        <p>
-          My background as a musician and researcher of ethnomusicology centers on the musical traditions of Eastern Europe, Turkey, and India. I am also a certified music therapist with additional training in phonophoresis.
-        </p>
-      </>
-    );
+    return null;
   };
 
   return (
@@ -83,28 +73,19 @@ export default function PageLayout(props: PageLayoutProps) {
                   src={url}
                   alt={title || "Laura de la Riva"}
                   className="w-full h-auto object-cover object-center block"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/hero.jpg";
-                  }}
                 />
               </div>
             ))
-          ) : (
-            <div className="relative w-full rounded-lg overflow-hidden shadow-sm">
-              <img
-                src="/hero.jpg"
-                alt="Laura de la Riva"
-                className="w-full h-auto object-cover object-center block"
-              />
-            </div>
-          )}
+          ) : null}
         </div>
 
         {/* Right: Italic Heading + Serif Text */}
         <div className="w-full md:w-1/2 flex flex-col justify-start pt-2 md:pt-0">
-          <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
-            {title || "Tuning the instrument of the self..."}
-          </h1>
+          {title && (
+            <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
+              {title}
+            </h1>
+          )}
           <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-charcoal/90 space-y-4">
             {renderContent()}
           </div>

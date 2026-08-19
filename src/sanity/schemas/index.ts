@@ -15,4 +15,5 @@ export const schemaTypes = [
   onlineCourse,
   contactInfo,
   imprint,
+  blockContent,
 ];

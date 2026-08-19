@@ -134,7 +134,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
   }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[#2A2A2A]/10 bg-[#FDFBF7]/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-30 border-b border-[#2A2A2A]/10">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4 md:px-10">
         <Link href="/" className="group flex min-w-0 items-center gap-3">
           <SafeImage
@@ -146,7 +146,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
             priority
           />
           <span className="min-w-0">
-            <span className="font-script block text-2xl leading-none text-[#2A2A2A] md:text-[1.75rem]">
+            <span className="font-script block text-2xl leading-none text-[#2A2A2A] md:text-[1.75rem] whitespace-nowrap">
               Laura de la Riva
             </span>
             <span className="mt-1 block font-serif text-[0.65rem] tracking-[0.22em] uppercase opacity-60">
