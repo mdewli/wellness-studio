@@ -1,4 +1,4 @@
-export default {
+export const blockContent = {
   title: 'Block Content',
   name: 'blockContent',
   type: 'array',
@@ -40,4 +40,6 @@ export default {
       options: {hotspot: true},
     },
   ],
-}
+};
+
+export default blockContent;
