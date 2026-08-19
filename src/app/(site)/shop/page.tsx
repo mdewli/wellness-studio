@@ -11,7 +11,7 @@ export default function ShopIndexPage() {
         Offerings
       </p>
       <h1 className="font-script italic text-4xl md:text-5xl tracking-wide">Shop</h1>
-      <ul className="mt-10 space-y-4 border-t border-[#2A2A2A]/10 pt-8">
+      <ul className="mt-10 space-y-4 border-t border-[#000000]/10 pt-8">
         <li>
           <Link href="/shop/malas" className="font-script italic text-2xl hover:opacity-70">
             Malas

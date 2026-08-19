@@ -71,7 +71,7 @@ export function ContactForm() {
           id="name"
           name="name"
           required
-          className="w-full border border-[#2A2A2A]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#2A2A2A]"
+          className="w-full border border-[#000000]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#000000]"
         />
       </div>
 
@@ -84,7 +84,7 @@ export function ContactForm() {
           name="email"
           type="email"
           required
-          className="w-full border border-[#2A2A2A]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#2A2A2A]"
+          className="w-full border border-[#000000]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#000000]"
         />
       </div>
 
@@ -97,7 +97,7 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full resize-y border border-[#2A2A2A]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#2A2A2A]"
+          className="w-full resize-y border border-[#000000]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#000000]"
         />
       </div>
 
@@ -111,14 +111,14 @@ export function ContactForm() {
           name="math_answer"
           inputMode="numeric"
           required
-          className="w-full border border-[#2A2A2A]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#2A2A2A]"
+          className="w-full border border-[#000000]/20 bg-transparent px-3 py-2.5 font-serif outline-none focus:border-[#000000]"
         />
       </div>
 
       <button
         type="submit"
         disabled={pending}
-        className="border border-[#2A2A2A] bg-transparent px-6 py-3 text-xs tracking-[0.18em] uppercase text-[#2A2A2A] transition-colors hover:bg-[#2A2A2A] hover:text-[#FDFBF7] disabled:opacity-50"
+        className="border border-[#000000] bg-transparent px-6 py-3 text-xs tracking-[0.18em] uppercase text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#FDFBF7] disabled:opacity-50"
       >
         {pending ? "Sending…" : "Send message"}
       </button>
@@ -126,7 +126,7 @@ export function ContactForm() {
       {state.message ? (
         <p
           role="status"
-          className={`font-serif text-sm ${state.ok ? "text-[#2A2A2A]" : "text-red-800"}`}
+          className={`font-serif text-sm ${state.ok ? "text-[#000000]" : "text-red-800"}`}
         >
           {state.message}
         </p>

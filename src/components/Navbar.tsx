@@ -98,7 +98,7 @@ function Dropdown({
       <ul
         id={menuId}
         role="menu"
-        className={`absolute left-0 top-full z-50 mt-0 min-w-[13rem] border border-[#2A2A2A]/15 py-2 shadow-md transition ${
+        className={`absolute left-0 top-full z-50 mt-0 min-w-[13rem] border border-[#000000]/15 bg-[#FFF3E3] py-2 shadow-md transition ${
           isOpen
             ? "pointer-events-auto visible opacity-100"
             : "pointer-events-none invisible opacity-0"
@@ -109,7 +109,7 @@ function Dropdown({
             <Link
               role="menuitem"
               href={child.href}
-              className="block whitespace-nowrap px-4 py-2 font-serif text-base tracking-wide transition-colors hover:bg-[#2A2A2A]/[0.04]"
+              className="block whitespace-nowrap px-4 py-2 font-serif text-base tracking-wide transition-colors hover:bg-[#000000]/[0.04]"
               onClick={onClose}
             >
               {child.label}
@@ -134,7 +134,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
   }
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-[#2A2A2A]/10">
+    <header className="sticky top-0 z-30 w-full border-b border-[#000000]/10">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8 py-4">
         <Link href="/" className="group flex min-w-0 items-center gap-3">
           <SafeImage
@@ -146,7 +146,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
             priority
           />
           <span className="min-w-0">
-            <span className="font-script block text-2xl leading-none text-[#2A2A2A] md:text-[1.75rem] whitespace-nowrap">
+            <span className="font-script block text-2xl leading-none text-[#000000] md:text-[1.75rem] whitespace-nowrap">
               Laura de la Riva
             </span>
             <span className="mt-1 block font-serif text-[0.65rem] tracking-[0.22em] uppercase opacity-60">
@@ -179,7 +179,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center border border-[#2A2A2A]/20 px-3 py-2 text-xs tracking-[0.16em] uppercase lg:hidden"
+          className="inline-flex items-center justify-center border border-[#000000]/20 px-3 py-2 text-xs tracking-[0.16em] uppercase lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           onClick={() => setMobileOpen((value) => !value)}
@@ -192,7 +192,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="border-t border-[#2A2A2A]/10 px-6 py-4 lg:hidden"
+          className="border-t border-[#000000]/10 px-6 py-4 lg:hidden"
         >
           <ul className="space-y-4">
             {items.map((item) => (
@@ -202,7 +202,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
                     <p className="mb-2 text-xs tracking-[0.18em] uppercase opacity-60">
                       {item.label}
                     </p>
-                    <ul className="space-y-2 border-l border-[#2A2A2A]/15 pl-4">
+                    <ul className="space-y-2 border-l border-[#000000]/15 pl-4">
                       {item.children.map((child) => (
                         <li key={child.href}>
                           <Link

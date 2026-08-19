@@ -37,7 +37,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${bodoni.variable} ${greatVibes.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col text-[#2A2A2A]">
+      <body className="flex min-h-full flex-col text-[#000000]">
         <Navbar items={navItems} />
         <div className="flex-1">{children}</div>
         <Footer />

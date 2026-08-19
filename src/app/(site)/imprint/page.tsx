@@ -35,7 +35,7 @@ export default async function ImprintPage() {
         />
       </div>
 
-      <h1 className="font-script italic text-4xl md:text-5xl tracking-wide text-[#2A2A2A] mb-8">
+      <h1 className="font-script italic text-4xl md:text-5xl tracking-wide text-[#000000] mb-8">
         Imprint
       </h1>
 

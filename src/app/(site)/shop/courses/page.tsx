@@ -85,7 +85,7 @@ export default async function OnlineCoursesPage() {
         {courses.map((course) => (
           <li
             key={course.slug}
-            className="grid gap-8 border-t border-[#2A2A2A]/10 pt-10 md:grid-cols-2"
+            className="grid gap-8 border-t border-[#000000]/10 pt-10 md:grid-cols-2"
           >
             <div className="relative aspect-[3/4] max-w-sm overflow-hidden">
               <SafeImage
@@ -111,7 +111,7 @@ export default async function OnlineCoursesPage() {
                 href={course.udemyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-fit border border-[#2A2A2A] px-5 py-2.5 text-xs tracking-[0.18em] uppercase transition-colors hover:bg-[#2A2A2A] hover:text-[#FDFBF7]"
+                className="inline-flex w-fit border border-[#000000] px-5 py-2.5 text-xs tracking-[0.18em] uppercase transition-colors hover:bg-[#000000] hover:text-[#FDFBF7]"
               >
                 View on Udemy
               </Link>

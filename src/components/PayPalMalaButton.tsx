@@ -52,7 +52,7 @@ export function PayPalMalaButton({
 
   if (!validClientId || !options) {
     return (
-      <p className="border border-[#2A2A2A]/15 px-4 py-3 font-serif text-sm opacity-70">
+      <p className="border border-[#000000]/15 px-4 py-3 font-serif text-sm opacity-70">
         Online checkout is currently unavailable
       </p>
     );
@@ -93,7 +93,7 @@ export function PayPalMalaButton({
         />
       </PayPalScriptProvider>
       {message ? (
-        <p className="font-serif text-sm text-[#2A2A2A]" role="status">
+        <p className="font-serif text-sm text-[#000000]" role="status">
           {message}
         </p>
       ) : null}

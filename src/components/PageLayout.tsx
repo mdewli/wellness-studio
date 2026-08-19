@@ -82,11 +82,11 @@ export default function PageLayout(props: PageLayoutProps) {
         {/* Right: Italic Heading + Serif Text */}
         <div className="w-full md:w-1/2 flex flex-col justify-start pt-2 md:pt-0">
           {title && (
-            <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-charcoal leading-tight">
+            <h1 className="font-script italic text-3xl sm:text-5xl lg:text-6xl mb-6 text-[#000000] leading-tight">
               {title}
             </h1>
           )}
-          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-[#2A2A2A]/90 space-y-4 text-justify">
+          <div className="font-serif not-italic text-base sm:text-lg leading-relaxed text-[#000000]/90 space-y-4 text-justify">
             {renderContent()}
           </div>
         </div>

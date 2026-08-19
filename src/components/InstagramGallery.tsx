@@ -50,7 +50,7 @@ export function InstagramGallery({
   return (
     <div className="flex w-full flex-col items-center gap-6">
       {/* Primary Image Display on Left */}
-      <div className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-md border border-[#2A2A2A]/15 bg-[#FDFBF7] shadow-sm transition-all hover:shadow-md">
+      <div className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-md border border-[#000000]/15 bg-[#FDFBF7] shadow-sm transition-all hover:shadow-md">
         <SafeImage
           src={activeImage.src}
           alt={activeImage.alt}
@@ -77,10 +77,10 @@ export function InstagramGallery({
                   key={`${img.src}-${idx}`}
                   type="button"
                   onClick={() => handleSelect(img, idx)}
-                  className={`group relative h-20 w-20 shrink-0 overflow-hidden rounded-md border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#2A2A2A] ${
+                  className={`group relative h-20 w-20 shrink-0 overflow-hidden rounded-md border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#000000] ${
                     isSelected
-                      ? "border-[#2A2A2A] ring-2 ring-[#2A2A2A]/40 scale-105 shadow-md"
-                      : "border-[#2A2A2A]/20 opacity-70 hover:opacity-100 hover:scale-102"
+                      ? "border-[#000000] ring-2 ring-[#000000]/40 scale-105 shadow-md"
+                      : "border-[#000000]/20 opacity-70 hover:opacity-100 hover:scale-102"
                   }`}
                   aria-label={`Select gallery image ${idx + 1}`}
                 >
@@ -101,7 +101,7 @@ export function InstagramGallery({
         <button
           type="button"
           onClick={handlePrev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full border border-[#2A2A2A]/20 bg-[#FDFBF7]/95 text-base text-[#2A2A2A] shadow-md transition-all hover:bg-[#2A2A2A] hover:text-[#FDFBF7] active:scale-95"
+          className="absolute left-0 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full border border-[#000000]/20 bg-[#FDFBF7]/95 text-base text-[#000000] shadow-md transition-all hover:bg-[#000000] hover:text-[#FDFBF7] active:scale-95"
           aria-label="Previous image"
         >
           ‹
@@ -111,7 +111,7 @@ export function InstagramGallery({
         <button
           type="button"
           onClick={handleNext}
-          className="absolute right-0 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full border border-[#2A2A2A]/20 bg-[#FDFBF7]/95 text-base text-[#2A2A2A] shadow-md transition-all hover:bg-[#2A2A2A] hover:text-[#FDFBF7] active:scale-95"
+          className="absolute right-0 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full border border-[#000000]/20 bg-[#FDFBF7]/95 text-base text-[#000000] shadow-md transition-all hover:bg-[#000000] hover:text-[#FDFBF7] active:scale-95"
           aria-label="Next image"
         >
           ›
@@ -126,8 +126,8 @@ export function InstagramGallery({
               onClick={() => handleSelect(galleryList[idx], idx)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 currentIndex === idx
-                  ? "w-6 bg-[#2A2A2A]"
-                  : "w-1.5 bg-[#2A2A2A]/30 hover:bg-[#2A2A2A]/60"
+                  ? "w-6 bg-[#000000]"
+                  : "w-1.5 bg-[#000000]/30 hover:bg-[#000000]/60"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
