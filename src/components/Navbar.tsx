@@ -134,8 +134,8 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
   }
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-[#000000]/10">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8 py-4">
+    <header className="sticky top-0 z-30 w-full border-b border-[#000000]/10 bg-[#FFF3E3]">
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-y-4 gap-x-6 px-4 sm:px-6 lg:px-8 py-4">
         <Link href="/" className="group flex min-w-0 items-center gap-3">
           <SafeImage
             src={SITE_LOGO}

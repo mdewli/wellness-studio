@@ -29,9 +29,9 @@ export default async function ImprintPage() {
         <Image
           src="/logo_image.jpg"
           alt="Logo"
-          width={80}
-          height={80}
-          className="h-20 w-20 object-contain rounded-md"
+          width={100}
+          height={100}
+          className="h-[100px] w-[100px] object-contain rounded-md"
         />
       </div>
 
