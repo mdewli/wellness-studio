@@ -179,7 +179,7 @@ export function Navbar({ items = defaultNav }: NavbarProps) {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center border border-[#000000]/20 px-3 py-2 text-xs tracking-[0.16em] uppercase lg:hidden"
+          className="inline-flex items-center justify-center border border-[#000000]/20 px-3 py-2 text-xs tracking-[0.16em] uppercase lg:hidden ml-auto"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           onClick={() => setMobileOpen((value) => !value)}
