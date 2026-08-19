@@ -27,9 +27,7 @@ export const metadata: Metadata = {
 };
 
 
-export const metadata = {
-  viewport: "width=device-width, initial-scale=1.0",
-};
+
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const navItems = await getMainNav();
@@ -47,3 +45,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
